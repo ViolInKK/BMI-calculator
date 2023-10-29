@@ -10,5 +10,6 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: 'League Spartan', sans-serif;
+  font-size: 32px;
   color-scheme: dark;
 }

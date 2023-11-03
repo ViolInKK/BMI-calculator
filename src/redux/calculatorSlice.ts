@@ -15,8 +15,15 @@ const initialState: CalculatorState = {
 const calculatorSlice = createSlice({
   name: "calculator",
   initialState,
-  reducers: {},
+  reducers: {
+    inputDigit(state, payload) {
+      if (state.isBuffer) {
+        state.bufferValue.push(payload.payload);
+      }
+      state.mainValue.push(payload.payload);
+    },
+  },
 });
 
-export const {} = calculatorSlice.actions;
+export const { inputDigit } = calculatorSlice.actions;
 export default calculatorSlice.reducer;

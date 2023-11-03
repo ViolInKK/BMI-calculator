@@ -1,9 +1,13 @@
-import React from 'react'
+import { IOdisplay, NumPad } from ".";
 
 const Calculator = () => {
   return (
-    <div>Calculator</div>
-  )
-}
+    <div className="flex flex-col gap-3">
+      Calculator
+      <IOdisplay />
+      <NumPad />
+    </div>
+  );
+};
 
-export default Calculator
+export default Calculator;

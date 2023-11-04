@@ -1,5 +1,5 @@
 import { typeStyles } from "../constants";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { inputDigit, inputAction, inputErase, inputEqual } from "../redux/calculatorSlice";
 
 interface NumPadButtonProps {
@@ -9,7 +9,7 @@ interface NumPadButtonProps {
 }
 
 const NumPadButton = ({ name, type, isWide }: NumPadButtonProps) => {
-  const themeNumber = 1;
+  const theme = useAppSelector((state) => state.calculator.styleTheme);
 
   const dispatch = useAppDispatch();
 
@@ -32,7 +32,9 @@ const NumPadButton = ({ name, type, isWide }: NumPadButtonProps) => {
 
   return (
     <div
-      className={`flex justify-center items-center ${typeStyles[themeNumber][type]} rounded border-b-4 ${isWide ? "col-span-2" : null}`}
+      className={`flex justify-center items-center ${typeStyles[theme][type]} rounded border-b-4 ${
+        isWide ? "col-span-2" : null
+      } select-none`}
       onClick={handleClick}
     >
       {name}

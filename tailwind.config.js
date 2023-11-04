@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const { createThemes } = require("tw-colors");
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -62,5 +65,56 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    createThemes({
+      default: {
+        pageBg: "#3B4664",
+        IOdisplayBg: "#181f32",
+        buttonsContainerBg: "#252d44",
+        inputButtonBg: "#eae3db",
+        eraseButtonBg: "#647299",
+        equalButtonBg: "#d13f30",
+        inputButtonShadow: "#b4a398",
+        eraseButtonShadow: "#424e73",
+        equalButtonShadow: "#902317",
+        inputButtonActive: "#ffffff",
+        eraseButtonActive: "#a1b3e3",
+        equalButtonActive: "#f96c5b",
+        textPrimary: "#44485a",
+        textSecondary: "#f8fbf9",
+      },
+      light: {
+        pageBg: "#e6e6e6",
+        IOdisplayBg: "#eeeeee",
+        buttonsContainerBg: "#d3cdcd",
+        inputButtonBg: "#e5e4e0",
+        eraseButtonBg: "#378286",
+        equalButtonBg: "#ff8b38",
+        inputButtonShadow: "#a59f90",
+        eraseButtonShadow: "#1c6067",
+        equalButtonShadow: "#893b03",
+        inputButtonActive: "#ffffff",
+        eraseButtonActive: "#62b5be",
+        equalButtonActive: "#ff8b38",
+        textPrimary: "#34342c",
+        textSecondary: "#faffff",
+      },
+      dark_neon: {
+        pageBg: "#17062a",
+        IOdisplayBg: "#1e0836",
+        buttonsContainerBg: "#1e0836",
+        inputButtonBg: "#331b4d",
+        eraseButtonBg: "#57067d",
+        equalButtonBg: "#00decf",
+        inputButtonShadow: "#861e9d",
+        eraseButtonShadow: "#bf16f5",
+        equalButtonShadow: "#6af8ee",
+        inputButtonActive: "#6b34ac",
+        eraseButtonActive: "#8730b0",
+        equalButtonActive: "#94fff9",
+        textPrimary: "#ffe139",
+        textSecondary: "#fff9ff",
+      },
+    }),
+  ],
 };

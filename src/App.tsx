@@ -1,12 +1,14 @@
-import { Calculator } from "./components"
+import { Calculator } from "./components";
+import { useAppSelector } from "./redux/hooks";
 
 function App() {
+  const theme = useAppSelector((state) => state.calculator.styleTheme);
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-pageBg_1">
-      <Calculator/>
+    <div className={`${theme} transition delay-50 w-screen h-screen flex justify-center items-center bg-pageBg`}>
+      <Calculator />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

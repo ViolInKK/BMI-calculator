@@ -5,6 +5,7 @@ interface CalculatorState {
   bufferValue: string;
   actionType: string;
   isBuffer: boolean;
+  styleTheme: "default" | "light" | "dark_neon";
 }
 
 const initialState: CalculatorState = {
@@ -12,6 +13,7 @@ const initialState: CalculatorState = {
   bufferValue: "",
   actionType: "",
   isBuffer: false,
+  styleTheme: "default",
 };
 
 const calculatorSlice = createSlice({
@@ -41,7 +43,7 @@ const calculatorSlice = createSlice({
           state.mainValue = state.mainValue.slice(0, state.mainValue.length - 1);
           break;
         case "RESET":
-          return initialState;
+          return { ...initialState, styleTheme: state.styleTheme };
       }
     },
     inputEqual(state) {

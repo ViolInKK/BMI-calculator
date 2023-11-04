@@ -47,8 +47,7 @@ const calculatorSlice = createSlice({
     inputEqual(state) {
       switch (state.actionType) {
         case "+":
-          let test = Number(state.mainValue) + Number(state.bufferValue);
-          state.mainValue = test.toString();
+          state.mainValue = (Number(state.mainValue) + Number(state.bufferValue)).toString();
           state.bufferValue = "";
           break;
         case "-":

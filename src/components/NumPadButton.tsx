@@ -1,6 +1,6 @@
 import { typeStyles } from "../constants";
 import { useAppDispatch } from "../redux/hooks";
-import { inputDigit } from "../redux/calculatorSlice";
+import { inputDigit, inputAction, inputErase, inputEqual } from "../redux/calculatorSlice";
 
 interface NumPadButtonProps {
   name: string;
@@ -16,17 +16,16 @@ const NumPadButton = ({ name, type, isWide }: NumPadButtonProps) => {
   const handleClick = () => {
     switch (type) {
       case "input":
-        console.log("1 input");
-        dispatch(inputDigit(+name));
+        dispatch(inputDigit(name));
         break;
       case "action":
-        console.log("2 action");
+        dispatch(inputAction(name));
         break;
       case "erase":
-        console.log("3 erase");
+        dispatch(inputErase(name));
         break;
       case "equal":
-        console.log("4 equal");
+        dispatch(inputEqual());
         break;
     }
   };

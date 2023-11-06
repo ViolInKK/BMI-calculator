@@ -1,9 +1,12 @@
-import { IOdisplay, NumPad } from ".";
+import { IOdisplay, NumPad, ThemeSwitch } from ".";
 
 const Calculator = () => {
   return (
     <div className="flex flex-col gap-3">
-      Calculator
+      <div>
+        calc|
+        <ThemeSwitch />
+      </div>
       <IOdisplay />
       <NumPad />
     </div>

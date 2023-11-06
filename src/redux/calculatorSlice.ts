@@ -1,11 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+type styleThemes = "default" | "light" | "dark_neon";
+
 interface CalculatorState {
   mainValue: string;
   bufferValue: string;
   actionType: string;
   isBuffer: boolean;
-  styleTheme: "default" | "light" | "dark_neon";
+  styleTheme: styleThemes;
 }
 
 const initialState: CalculatorState = {
@@ -16,17 +18,35 @@ const initialState: CalculatorState = {
   styleTheme: "default",
 };
 
+const calculateResult = (type: string, mainValue: string, bufferValue: string) => {
+  switch (type) {
+    case "+":
+      return (+mainValue + +bufferValue).toPrecision(3);
+    case "-":
+      return (+mainValue - +bufferValue).toPrecision(3);
+    case "/":
+      return (+mainValue / +bufferValue).toPrecision(3);
+    case "x":
+      return (+mainValue * +bufferValue).toPrecision(3);
+    default:
+      return "0";
+  }
+};
+
 const calculatorSlice = createSlice({
   name: "calculator",
   initialState,
   reducers: {
     inputDigit(state, action: PayloadAction<string>) {
-      if (state.mainValue.length === 15 || state.bufferValue.length === 15) {
-        return;
-      }
       if (state.isBuffer) {
+        if (state.bufferValue.length === 15) {
+          return;
+        }
         state.bufferValue += action.payload;
       } else {
+        if (state.mainValue.length === 15) {
+          return;
+        }
         state.mainValue += action.payload;
       }
     },
@@ -47,22 +67,21 @@ const calculatorSlice = createSlice({
       }
     },
     inputEqual(state) {
-      switch (state.actionType) {
-        case "+":
-          state.mainValue = (Number(state.mainValue) + Number(state.bufferValue)).toString();
-          state.bufferValue = "";
-          break;
-        case "-":
-          break;
-        case "/":
-          break;
-        case "x":
-          break;
+      var result = calculateResult(state.actionType, state.mainValue, state.bufferValue);
+      if (result === "NaN" || result === "Infinity") {
+        state.mainValue = "0";
+      } else {
+        state.mainValue = result;
       }
+      state.bufferValue = "";
+      state.actionType = "";
       state.isBuffer = false;
+    },
+    switchTheme(state, action: PayloadAction<styleThemes>) {
+      state.styleTheme = action.payload;
     },
   },
 });
 
-export const { inputDigit, inputAction, inputEqual, inputErase } = calculatorSlice.actions;
+export const { inputDigit, inputAction, inputEqual, inputErase, switchTheme } = calculatorSlice.actions;
 export default calculatorSlice.reducer;

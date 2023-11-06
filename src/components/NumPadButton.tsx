@@ -1,4 +1,4 @@
-import { typeStyles } from "../constants";
+import { buttonStyles } from "../constants";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { inputDigit, inputAction, inputErase, inputEqual } from "../redux/calculatorSlice";
 
@@ -30,9 +30,10 @@ const NumPadButton = ({ name, type, isWide }: NumPadButtonProps) => {
     }
   };
 
+
   return (
     <div
-      className={`flex justify-center items-center ${typeStyles[theme][type]} rounded border-b-4 ${
+      className={`transition delay-50 cursor-pointer flex justify-center items-center ${buttonStyles[theme][type]} rounded border-b-4 ${
         isWide ? "col-span-2" : null
       } select-none`}
       onClick={handleClick}

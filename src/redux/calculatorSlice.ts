@@ -1,13 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type styleThemes = "default" | "light" | "dark_neon";
-
 interface CalculatorState {
   mainValue: string;
   bufferValue: string;
   actionType: string;
   isBuffer: boolean;
-  styleTheme: styleThemes;
+  styleTheme: string;
 }
 
 const initialState: CalculatorState = {
@@ -21,13 +19,13 @@ const initialState: CalculatorState = {
 const calculateResult = (type: string, mainValue: string, bufferValue: string) => {
   switch (type) {
     case "+":
-      return (+mainValue + +bufferValue).toPrecision(3);
+      return (+mainValue + +bufferValue).toFixed(2);
     case "-":
-      return (+mainValue - +bufferValue).toPrecision(3);
+      return (+mainValue - +bufferValue).toFixed(2);
     case "/":
-      return (+mainValue / +bufferValue).toPrecision(3);
+      return (+mainValue / +bufferValue).toFixed(2);
     case "x":
-      return (+mainValue * +bufferValue).toPrecision(3);
+      return (+mainValue * +bufferValue).toFixed(2);
     default:
       return "0";
   }
@@ -77,7 +75,7 @@ const calculatorSlice = createSlice({
       state.actionType = "";
       state.isBuffer = false;
     },
-    switchTheme(state, action: PayloadAction<styleThemes>) {
+    switchTheme(state, action: PayloadAction<string>) {
       state.styleTheme = action.payload;
     },
   },
